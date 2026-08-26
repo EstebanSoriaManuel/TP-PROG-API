@@ -1,4 +1,6 @@
+using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace Testing.Controllers;
 
@@ -6,13 +8,14 @@ namespace Testing.Controllers;
 [Route("[controller]")]
 public class MascotaController : ControllerBase
 {
-  private static readonly List<Mascota> ListMascotas = new ()
+  private static List<Mascota> ListMascotas = new List<Mascota>()
   {
     new Perro { ID = 1, Nombre = "Firu", Edad = 5, Raza = "caniche"},
     new Gato { ID = 2, Nombre = "Luna", Edad = 3, Color = "naranja"},
     new Perro { ID = 2, Nombre = "Rocky", Edad = 8, Raza = "labrador"},
     new Gato { ID = 3, Nombre = "Michi", Edad = 10, Color = "negro"},
   };
+
 
     private readonly ILogger<MascotaController> _logger;
 
@@ -57,6 +60,22 @@ public class MascotaController : ControllerBase
         }
         return NotFound();
 
+    }
+
+
+    [HttpGet ("/Mascota/mayores-a/{edad}")]
+    public IActionResult MascotasMayores(int edad)
+    {
+        List<Mascota> listMayoresEdad = new List<Mascota>();
+        
+        foreach (Mascota m in ListMascotas)
+        {
+            if (m.Edad > edad)
+            {
+                listMayoresEdad.Add(m);
+            }
+        }
+        return Ok(listMayoresEdad);
     }
 
 

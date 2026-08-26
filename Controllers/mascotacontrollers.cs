@@ -12,8 +12,8 @@ public class MascotaController : ControllerBase
   {
     new Perro { ID = 1, Nombre = "Firu", Edad = 5, Raza = "caniche"},
     new Gato { ID = 2, Nombre = "Luna", Edad = 3, Color = "naranja"},
-    new Perro { ID = 2, Nombre = "Rocky", Edad = 8, Raza = "labrador"},
-    new Gato { ID = 3, Nombre = "Michi", Edad = 10, Color = "negro"},
+    new Perro { ID = 3, Nombre = "Rocky", Edad = 8, Raza = "labrador"},
+    new Gato { ID = 4, Nombre = "Michi", Edad = 10, Color = "negro"},
   };
 
 

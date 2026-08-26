@@ -79,6 +79,35 @@ public class MascotaController : ControllerBase
     }
 
 
+    [HttpGet ("/Mascota/tipo/{tipo}")]
+    public IActionResult MascotasPorTipo(string tipo)
+    {
+        List<Perro> listPerros = new List<Perro>();
+        List<Gato> listGatos = new List<Gato>();
+        foreach (Mascota m in ListMascotas)
+        {
+            if (m is Perro p) // Si es es un perro, lo guarda en p como tipo perro, para asi dsps poder guardarlo en la lista.
+            {
+                listPerros.Add(p);
+            }
+            if(m is Gato g)
+            {
+                listGatos.Add(g);
+            }
+        }
+
+        if(tipo.ToLower() == "perro")
+        {
+            return Ok (listPerros);
+        }
+        if(tipo.ToLower() == "gato")
+        {
+            return Ok (listGatos);
+        }
+        return BadRequest("Ingrese un tipo de mascota válido");
+    }
+
+
 
     [HttpPut("perro/{id}")]
     public IActionResult UpdatePerro(int id, [FromBody] Perro PerroActualizado)

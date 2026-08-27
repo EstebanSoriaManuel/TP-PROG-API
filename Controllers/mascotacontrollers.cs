@@ -26,14 +26,14 @@ public class MascotaController : ControllerBase
     
 
 
-    [HttpPost ("perro")]
+    [HttpPost ("/perro")]
     public IActionResult CreatePerro([FromBody] Perro NuevoPerro)
     {
         ListMascotas.Add(NuevoPerro);
         return Created($"/api/mascotas/perro/{NuevoPerro.ID}",NuevoPerro); //se aclara que se creo el recurso, y se da la url por si se desea consultar
     }
 
-     [HttpPost ("gato")]
+     [HttpPost ("/gato")]
     public IActionResult CreateGato([FromBody] Gato NuevoGato)
     {
         ListMascotas.Add(NuevoGato);
@@ -42,13 +42,13 @@ public class MascotaController : ControllerBase
     
 
 
-    [HttpGet]
+    [HttpGet ("/All")]
     public IActionResult GetAll()
     {
         return Ok(ListMascotas);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("/{id}")]
     public IActionResult GetById(int id)
     {
         foreach (Mascota M in ListMascotas)
@@ -63,7 +63,7 @@ public class MascotaController : ControllerBase
     }
 
 
-    [HttpGet ("/Mascota/mayores-a/{edad}")]
+    [HttpGet ("/mayores-a/{edad}")]
     public IActionResult MascotasMayores(int edad)
     {
         List<Mascota> listMayoresEdad = new List<Mascota>();
@@ -79,7 +79,7 @@ public class MascotaController : ControllerBase
     }
 
 
-    [HttpGet ("/Mascota/tipo/{tipo}")]
+    [HttpGet ("/tipo/{tipo}")]
     public IActionResult MascotasPorTipo(string tipo)
     {
         List<Perro> listPerros = new List<Perro>();
@@ -109,7 +109,7 @@ public class MascotaController : ControllerBase
 
 
 
-    [HttpPut("perro/{id}")]
+    [HttpPut("/perro/{id}")]
     public IActionResult UpdatePerro(int id, [FromBody] Perro PerroActualizado)
     {
         Perro Perro = null;
@@ -136,7 +136,7 @@ public class MascotaController : ControllerBase
     }
 
 
-   [HttpPut("gato/{id}")]
+   [HttpPut("/gato/{id}")]
     public IActionResult UpdateGato(int id, [FromBody] Gato gatoActualizado)
     {
         Gato gato = null;
@@ -164,7 +164,7 @@ public class MascotaController : ControllerBase
       
 
 
-    [HttpDelete ("{id}")]
+    [HttpDelete ("/{id}")]
     public IActionResult Delete(int id)
     {
         foreach (Mascota M in ListMascotas)
